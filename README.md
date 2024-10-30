@@ -1,79 +1,71 @@
-# Microservices Projects
+## Intermediate Level Projects
 
-## Beginner Projects
+	6.	Currency Converter with Sealed Classes
+	•	Features: Sealed classes, enum types, extension functions.
+	•	Learning Focus: Implement enums and sealed classes for exhaustive when statements.
+	7.	Mini Quiz App
+	•	Features: Higher-order functions, lambda expressions, list manipulation.
+	•	Learning Focus: Learn functional programming with map, filter, and reduce.
+	8.	Contacts Manager using OOP
+	•	Features: Object-oriented programming, classes, inheritance, data classes.
+	•	Learning Focus: Learn about class hierarchy and encapsulation.
+	9.	Basic Weather App (Console-Based with Fake Data)
+	•	Features: Data classes, JSON parsing using Gson or Kotlinx.serialization.
+	•	Learning Focus: Work with JSON data and Kotlin’s data classes.
+	10.	Simple HTTP Client
+	•	Features: Coroutines, HttpClient for REST API calls.
+	•	Learning Focus: Work with asynchronous programming using coroutines.
 
-1. Simple RESTful Service 
-* [ ] In-Progress
-  * Description: A basic REST API that allows users to perform CRUD (Create, Read, Update, Delete) operations. This project introduces the concept of building and exposing an API endpoint for external consumers.
-  *	Technologies: Spring Boot (Java), Flask (Python), Express (Node.js), or Micronaut (Kotlin)
-  * Build a basic REST API with CRUD operations (e.g., a “Todo List” or “Notes” app).
-* Use Cases:
-    * [ ] Task management tools.
-    * [ ] Shopping list apps.
-    * [ ] Task trackers for personal use.
-    * [ ] Basic note-taking applications.
-    * [ ] Learning how to build RESTful APIs.
-2. Multiple RESTful Microservices
-   * Split the API from project 1 into two separate services: one for managing users and one for managing todos/notes.
-3. Service Discovery Using Consul or Eureka
-   * Add a service registry (e.g., Consul or Eureka) for automatic service discovery between two microservices.
-4. Communication with HTTP and REST
-   * Develop two microservices that communicate with each other using HTTP and REST endpoints.
-5.	Database Per Service
-* Implement separate databases for each microservice (e.g., user service with PostgreSQL 
- and task service with MongoDB).
-6. API Gateway Integration
-   * Introduce an API Gateway (e.g., Kong, Zuul, or NGINX) to manage external traffic routing to your microservices.
-7. Circuit Breaker Implementation
-   * Add a circuit breaker pattern to handle microservice failures gracefully (e.g., using Hystrix or Resilience4j).
-8. Health Check Endpoints
-   * Create health check endpoints for each microservice and integrate them with your service discovery tool.
-9. Dockerize Microservices
-   * Containerize your microservices using Docker, ensuring they can run independently on different machines.
-10. Logging Using ELK Stack
- * Integrate logging for all microservices using the ELK (Elasticsearch, Logstash, Kibana) stack to monitor logs centrally.
+## Advanced Intermediate Level Projects
 
-## Intermediate Projects
+	11.	Kotlin DSL for Task Management
+	•	Features: Kotlin DSL, higher-order functions, type-safe builders.
+	•	Learning Focus: Create a simple domain-specific language for task management.
+	12.	Notes App with Persistence (SQLite)
+	•	Features: SQLite database with Kotlin, CRUD operations, DAO pattern.
+	•	Learning Focus: Learn database integration and CRUD functionalities.
+	13.	Simple Blog API
+	•	Features: REST API using Ktor, routing, serialization, error handling.
+	•	Learning Focus: Build a RESTful API using the Ktor framework.
+	14.	Unit Converter App with MVI Architecture
+	•	Features: Multi-module project, MVI (Model-View-Intent) architecture, LiveData.
+	•	Learning Focus: Implement Kotlin app architecture with reactive patterns.
+	15.	Weather App with Kotlin Flow
+	•	Features: Kotlin Flow, coroutines, Retrofit.
+	•	Learning Focus: Use Kotlin Flow for asynchronous streams of data.
 
-11.	Load Balancing with NGINX
-* Set up load balancing across multiple instances of the same microservice using NGINX.
-12.	Asynchronous Communication with RabbitMQ or Kafka
- * Convert microservices to use message queues (e.g., RabbitMQ or Kafka) for asynchronous event-driven communication.
-13.	API Versioning and Deprecation
- * Add versioning to your API and demonstrate how you can deprecate old endpoints while still supporting new ones.
-14.	Distributed Tracing Using OpenTelemetry
- * Implement distributed tracing across microservices to visualize call flows and performance using OpenTelemetry or Jaeger.
-15.	Configuration Management with Spring Cloud Config
- * Centralize the configuration of your microservices using a tool like Spring Cloud Config or HashiCorp Vault.
-16.	Centralized Authentication with OAuth2
- * Implement OAuth2 authentication, using a service like Keycloak or Auth0, across all microservices.
-17.	Rate Limiting in API Gateway
- * Add rate limiting in the API Gateway to manage client request throttling for different microservices.
-18.	Microservices Metrics with Prometheus and Grafana
- * Implement Prometheus for metrics collection and Grafana for dashboards to monitor microservice performance.
-19.	Event Sourcing with CQRS Pattern
- * Build a microservice using the Command Query Responsibility Segregation (CQRS) and Event Sourcing patterns for data consistency.
-20.	Fault Tolerance with Retry and Timeout Policies
- * Introduce retry and timeout policies to handle temporary service unavailability and ensure fault tolerance.
+## Advanced Level Projects
 
-## Advanced Projects
-21.	Container Orchestration with Kubernetes
- * Deploy your microservices on Kubernetes, and implement scaling, self-healing, and rolling updates.
-22.	Service Mesh with Istio
- * Add a service mesh (e.g., Istio or Linkerd) for secure service-to-service communication, traffic management, and observability.
-23.	Distributed Caching with Redis
- * Introduce Redis as a distributed caching layer to improve performance across microservices.
-24.	Zero Downtime Deployments
- * Implement blue/green or canary deployments in your Kubernetes cluster for zero downtime deployments.
-25.	API Rate Limiting and Quotas with Redis
- * Implement rate limiting and quotas using Redis for managing API traffic and protecting microservices from abuse.
-26.	Distributed Transactions with Sagas
- * Use the Saga pattern to handle distributed transactions across microservices, ensuring eventual consistency.
-27.	Security Hardening with Mutual TLS
- * Secure the communication between microservices using mutual TLS for service-to-service encryption.
-28.	Multi-Tenancy Support
- * Build microservices that support multiple tenants, ensuring data isolation and separate access control for each tenant.
-29.	Chaos Engineering with Gremlin
- * Implement chaos engineering practices by introducing failure testing (e.g., using Gremlin or Chaos Monkey) to improve resilience.
-30.	Serverless Microservices with AWS Lambda or Google Cloud Functions
- * Explore serverless architecture by deploying some microservices as AWS Lambda functions or Google Cloud Functions, and compare the trade-offs between serverless and containerized microservices.
+	16.	Custom Gradle Plugin in Kotlin
+	•	Features: Gradle, plugin development, Kotlin DSL.
+	•	Learning Focus: Create a custom Gradle plugin using Kotlin’s DSL capabilities.
+	17.	Kotlin Native App
+	•	Features: Kotlin Multiplatform, Kotlin Native, platform-specific code.
+	•	Learning Focus: Build a small app using Kotlin Multiplatform for iOS/Android.
+	18.	Concurrency in Kotlin with Coroutines
+	•	Features: Concurrency models, Dispatchers, async/await, coroutine scopes.
+	•	Learning Focus: Master concurrency in Kotlin using coroutines and coroutine context management.
+	19.	Image Processing App
+	•	Features: Image manipulation libraries, bitmaps, working with file streams.
+	•	Learning Focus: Work on an image processing tool, leveraging Kotlin for performance optimization.
+	20.	Custom Annotations and Reflection
+	•	Features: Annotations, reflection API.
+	•	Learning Focus: Create and process custom annotations using Kotlin’s reflection capabilities.
+
+## Expert Level Projects
+
+	21.	Kotlin Compiler Plugin
+	•	Features: Compiler plugin development, Kotlin Compiler API, AST (Abstract Syntax Tree).
+	•	Learning Focus: Dive deep into Kotlin’s compiler to extend or modify behavior.
+	22.	Reactive Streams with Kotlin Flow and Coroutines
+	•	Features: Complex Flow operators, cold streams, backpressure handling.
+	•	Learning Focus: Master reactive streams by building a real-time data processing pipeline.
+	23.	Kotlin Native Game Engine
+	•	Features: Kotlin Native, game engine architecture, performance optimization.
+	•	Learning Focus: Build a performance-sensitive system using Kotlin Native for game development.
+	24.	Domain-Specific Language (DSL) for Custom Configuration
+	•	Features: Advanced DSL creation, type-safe builders, infix functions.
+	•	Learning Focus: Create an extensive DSL that configures and manages a complex domain.
+	25.	Kotlin Compiler IR (Intermediate Representation) Optimization
+	•	Features: IR optimization, bytecode generation, low-level Kotlin code manipulation.
+	•	Learning Focus: Implement optimizations on Kotlin’s Intermediate Representation (IR) for performance tuning.

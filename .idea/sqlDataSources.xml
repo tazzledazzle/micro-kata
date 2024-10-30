@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="1f6e5096-901b-4a69-81b6-14bcd258cfe8" name="notes Mapping">
+      <data-sources db="e2092e4f-f71a-464f-a287-3e58db0c4a75" ddl="d2878250-8431-44d5-9771-18e20cce47be" />
+    </mapping>
+  </component>
+</project>

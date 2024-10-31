@@ -1,8 +1,8 @@
 
 fun main() {
-    val db = NotesDatabase()
-    db.addNote("Learn Kotlin")
-    db.addNote("Practice coding")
-    val notes = db.getAllNotes()
+    val repository = NoteRepository(NotesDatabase())
+    repository.addNote("Learn Kotlin")
+    repository.addNote("Practice coding")
+    val notes = repository.getAllNotes()
     notes.forEach { println(it) }
 }

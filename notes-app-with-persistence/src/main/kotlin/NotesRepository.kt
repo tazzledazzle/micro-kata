@@ -39,14 +39,8 @@ class NoteRepository(private val db: NotesDatabase) {
     }
 
     fun getAllNotes(): List<Note> {
-        val resultSet = db.getAllNotesFromDatabase()
-        val notes = mutableListOf<Note>()
-        while (resultSet.next()) {
-            notes.add(Note(
-                resultSet.getInt("id"),
-                resultSet.getString("content")
-            ))
-        }
+        val notes = db.getAllNotesFromDatabase()
+
         return notes
     }
 }

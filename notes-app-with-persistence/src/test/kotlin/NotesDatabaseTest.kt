@@ -1,109 +1,100 @@
 import io.mockk.*
-import org.junit.Before
-import org.junit.Test
-import kotlin.test.Ignore
-import kotlin.test.assertEquals
+import io.kotest.core.spec.style.StringSpec
+import io.kotest.engine.test.status.isEnabled
+import io.kotest.matchers.shouldBe
+import kotlin.reflect.KClass
 
+class NotesDatabaseTest : StringSpec({
 
-class NotesDatabaseTest {
-    private lateinit var repository: NoteRepository
-    @Before
-    fun setUp() {
-        repository = NoteRepository(NotesDatabase())
+    lateinit var testRepository: NoteRepository
+
+    beforeTest {
+        testRepository = NoteRepository(NotesDatabase())
         println("Starting tests")
     }
-    @Test
-    fun testFramework() {
-        assertEquals(1, 1)
+
+    "test framework should assert equal values" {
+        1 shouldBe 1
     }
 
-    @Test
-    fun testIfDBExists() {
+    "test if DB exists" {
         val db = NotesDatabase()
 
-        assertEquals(true, db.checkConnection())
-
-        // check table
-        assertEquals(true, db.checkTable())
+        db.checkConnection() shouldBe true
+        db.checkTable() shouldBe true
     }
 
-
-    @Test
-    fun testAddNote() {
-
+    "test add note" {
         val testText = "test note"
-        repository.addNote(testText)
-        val notes = repository.getAllNotes()
-        assertEquals(testText, notes.find { it.content == testText }!!.content)
+        testRepository.addNote(testText)
+        val notes = testRepository.getAllNotes()
+        notes.find { it.content == testText }!!.content shouldBe testText
     }
 
-    @Test
-    fun testFindNoteById() {
-        repository.addNote("test note")
-        val notes = repository.getAllNotes()
-        val note = repository.findNoteById(notes[0].id)
-        assertEquals("test note", note?.content)
+    "test find note by ID" {
+        testRepository.addNote("test note")
+        val notes = testRepository.getAllNotes()
+        val note = testRepository.findNoteById(notes[0].id)
+        note?.content shouldBe "test note"
     }
 
-    @Test
-    fun testUpdateNote() {
-        val repository = mockk<NoteRepository>()
+    "test update note" {
+        val mockDatabase = mockk<NotesDatabase>()
+
         val note = Note(
             id = 1,
             content = "test note"
         )
 
-        every { repository.addNote(any()) } just Runs
-        every { repository.getAllNotes() } returns listOf(note)
-        every { repository.updateNote(any(), any()) } just Runs
-        every { repository.findNoteById(any()) } returns note.copy(content = "updated note")
+        every { mockDatabase.addNoteToDatabase(any()) } just Runs
+        every { mockDatabase.getAllNotesFromDatabase() } returns listOf(note)
+        every { mockDatabase.updateNoteInDatabase(any(), any()) } just Runs
+        every { mockDatabase.findNoteByIdFromDatabase(any()) } returns note.copy(content = "updated note")
 
-        repository.addNote("test note")
-        val notes = repository.getAllNotes()
-        repository.updateNote(notes[0].id, "updated note")
-        val updatedNote = repository.findNoteById(notes[0].id)
-        assertEquals("updated note", updatedNote?.content)
+        mockDatabase.addNoteToDatabase("test note")
+        val notes = mockDatabase.getAllNotesFromDatabase()
+        mockDatabase.updateNoteInDatabase(notes[0].id, "updated note")
+        val updatedNote = mockDatabase.findNoteByIdFromDatabase(notes[0].id)
+        updatedNote?.content shouldBe "updated note"
 
-        verify { repository.addNote("test note") }
-        verify { repository.getAllNotes() }
-        verify { repository.updateNote(notes[0].id, "updated note") }
-        verify { repository.findNoteById(notes[0].id) }
+        verify { mockDatabase.addNoteToDatabase("test note") }
+        verify { mockDatabase.getAllNotesFromDatabase() }
+        verify { mockDatabase.updateNoteInDatabase(notes[0].id, "updated note") }
+        verify { mockDatabase.findNoteByIdFromDatabase(notes[0].id) }
     }
 
-    @Test
-    fun testDeleteNote() {
-        val repository = mockk<NoteRepository>()
+    "test delete note" {
+        val mockDatabase = mockk<NotesDatabase>()
+
         val note = Note(
             id = 1,
             content = "test note"
         )
 
-        every { repository.addNote(any()) } just Runs
-        every { repository.getAllNotes() } returns listOf(note)
-        every { repository.deleteNote(any()) } just Runs
-        every { repository.findNoteById(any()) } returns null
+        every { mockDatabase.addNoteToDatabase(any()) } just Runs
+        every { mockDatabase.getAllNotesFromDatabase() } returns listOf(note)
+        every { mockDatabase.updateNoteInDatabase(any(), any()) } just Runs
+        every { mockDatabase.findNoteByIdFromDatabase(any()) } returns null
 
-        repository.addNote("test note")
-        val notes = repository.getAllNotes()
-        repository.deleteNote(notes[0].id)
-        val deletedNote = repository.findNoteById(notes[0].id)
-        assertEquals(null, deletedNote)
+        mockDatabase.addNoteToDatabase("test note")
+        val notes = mockDatabase.getAllNotesFromDatabase()
+        mockDatabase.deleteNoteFromDatabase(notes[0].id)
+        val deletedNote = mockDatabase.findNoteByIdFromDatabase(notes[0].id)
+        deletedNote shouldBe null
 
-        verify { repository.addNote("test note") }
-        verify { repository.getAllNotes() }
-        verify { repository.deleteNote(notes[0].id) }
-        verify { repository.findNoteById(notes[0].id) }
+        verify { mockDatabase.addNoteToDatabase("test note") }
+        verify { mockDatabase.getAllNotesFromDatabase() }
+        verify { mockDatabase.deleteNoteFromDatabase(notes[0].id) }
+        verify { mockDatabase.findNoteByIdFromDatabase(notes[0].id) }
     }
 
-    @Ignore("Database is locked for some reason")
-    fun integrateTestDeleteNote() {
-        val exitingNotes = repository.getAllNotes()
-        val currentSize = exitingNotes.size
-        if (exitingNotes.isNotEmpty()) {
-            repository.deleteNote(exitingNotes[0].id)
+    "integrate test delete note" {
+        val existingNotes = testRepository.getAllNotes()
+        val currentSize = existingNotes.size
+        if (existingNotes.isNotEmpty()) {
+            testRepository.deleteNote(existingNotes[0].id)
         }
 
-        assertEquals(currentSize - 1, repository.getAllNotes().size)
-
+        testRepository.getAllNotes().size shouldBe currentSize - 1
     }
-}
+})

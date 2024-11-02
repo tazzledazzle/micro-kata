@@ -1,7 +1,10 @@
 package org.example.app
 
+import io.ktor.http.content.*
 import io.ktor.server.application.*
 import io.ktor.server.html.*
+import io.ktor.server.request.*
+import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.html.*
 import java.io.File
@@ -36,6 +39,19 @@ fun Application.module() {
                     }
                 }
             }
+        }
+        post("/upload") {
+            val multipart = call.receiveMultipart()
+            multipart.forEachPart { part ->
+                if (part is PartData.FileItem) {
+                    val file = File("uploads/${part.originalFileName}")
+                    part.streamProvider().use { its ->
+                        file.outputStream().buffered().use { its.copyTo(it) }
+                    }
+                }
+                part.dispose()
+            }
+            call.respondRedirect("/")
         }
     }
 }

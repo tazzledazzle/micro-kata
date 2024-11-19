@@ -8,6 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/structurizr-kotlin" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -32,6 +33,29 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/simple-REST-kotlin/micronautguide" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/youkube/build-logic" name="build-logic">
+                <projects>
+                  <project path="$PROJECT_DIR$/youkube/build-logic" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/youkube" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/youkube" />
+            <option value="$PROJECT_DIR$/youkube/app" />
+            <option value="$PROJECT_DIR$/youkube/build-logic" />
+            <option value="$PROJECT_DIR$/youkube/list" />
+            <option value="$PROJECT_DIR$/youkube/utilities" />
           </set>
         </option>
       </GradleProjectSettings>
